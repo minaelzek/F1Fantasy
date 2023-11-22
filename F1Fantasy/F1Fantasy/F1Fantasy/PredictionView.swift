@@ -18,44 +18,49 @@ struct PredictionView: View {
     @State private var selectedP1: String = "Pick a driver"
     @State private var selectedP2: String = "Pick a driver"
     @State private var selectedP3: String = "Pick a driver"
-    @State private var selectedFastestLap: String = ""
+    @State private var selectedFastestLap: String = "Pick a driver"
 
     var body: some View {
-        Form {
-            Section(header: Text("Predictions")) {
-                Picker("P1", selection: $selectedP1) {
-                    ForEach(drivers, id: \.self) {
-                        Text($0)
+        VStack {
+            Form {
+                Section(header: Text("Predictions")) {
+                    Picker("P1", selection: $selectedP1) {
+                        ForEach(drivers, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("P2", selection: $selectedP2) {
+                        ForEach(drivers, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("P3", selection: $selectedP3) {
+                        ForEach(drivers, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Fastest Lap", selection: $selectedFastestLap) {
+                        ForEach(drivers, id: \.self) {
+                            Text($0)
+                        }
                     }
                 }
-                Picker("P2", selection: $selectedP2) {
-                    ForEach(drivers, id: \.self) {
-                        Text($0)
-                    }
-                }
-                Picker("P3", selection: $selectedP3) {
-                    ForEach(drivers, id: \.self) {
-                        Text($0)
-                    }
-                }
-                Picker("Fastest Lap", selection: $selectedFastestLap) {
-                    ForEach(drivers, id: \.self) {
-                        Text($0)
-                    }
-                }
-
-                Button("Submit Prediction") {
-                    if validatePredictions() {
-                        // Code to handle the successful submission
-                    } else {
-                        // Show an error message or prompt the user to correct their selections
-                    }
-                }
-                .padding()
-                .background(Color.green)
-                .foregroundColor(.white)
-                .cornerRadius(8)
             }
+
+            Spacer()
+
+            Button("Submit Prediction") {
+                if validatePredictions() {
+                    // Code to handle the successful submission
+                } else {
+                    // Show an error message or prompt the user to correct their selections
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.red)
+            .foregroundColor(.white)
+            .cornerRadius(0)
         }
         .navigationBarTitle("Make a Prediction", displayMode: .inline)
     }
