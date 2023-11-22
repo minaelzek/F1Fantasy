@@ -15,9 +15,9 @@ struct PredictionView: View {
                    "Fernando Alonso", "Lance Stroll", "Kevin Magnussen", "Nico Hulkenberg",
                    "Yuki Tsunoda", "Nyck de Vries", "Logan Sargeant", "Alex Albon"]
 
-    @State private var selectedP1: String = ""
-    @State private var selectedP2: String = ""
-    @State private var selectedP3: String = ""
+    @State private var selectedP1: String = "Pick a driver"
+    @State private var selectedP2: String = "Pick a driver"
+    @State private var selectedP3: String = "Pick a driver"
     @State private var selectedFastestLap: String = ""
 
     var body: some View {
