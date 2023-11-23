@@ -16,22 +16,28 @@ struct WelcomeView: View {
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all) // Ensure it covers the entire screen
 
-            // The rest of your view content
-            VStack(spacing: 20) {
+            VStack {
                 Text("Welcome to F1Fantasy")
-                    .font(.largeTitle)
+                    .font(.system(size: 40, weight: .bold, design: .default))
                     .foregroundColor(.white)
-                    .padding(.top, 50)
-                Spacer()
+                    .shadow(color: .black, radius: 10, x: 0, y: 0)
+                    .opacity(0.8)
+                    .padding(.top, 50) // Adds padding at the top
+                Spacer() // Pushes everything below it down
+            }
+
+            VStack {
+                Spacer() // Pushes everything below it to the bottom
                 CustomButton(text: "Create Account", backgroundColor: Color.blue)
                 CustomButton(text: "Sign in with Google", image: Image("google-logo"), backgroundColor: .blue)
                 CustomButton(text: "Sign in with Apple", image: Image("apple-logo"), backgroundColor: .blue)
-                Spacer()
+                Spacer(minLength: 30) // Adjusts the space at the bottom
             }
-            .padding()
         }
     }
 }
+
+
 
 
 
