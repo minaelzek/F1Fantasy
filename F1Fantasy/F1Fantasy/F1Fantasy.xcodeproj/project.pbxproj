@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		637C94372B0F74B100416D2B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C94362B0F74B100416D2B /* WelcomeView.swift */; };
 		63E25E062B0DFB8500E15F05 /* F1FantasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E25E052B0DFB8500E15F05 /* F1FantasyApp.swift */; };
 		63E25E082B0DFB8500E15F05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E25E072B0DFB8500E15F05 /* ContentView.swift */; };
 		63E25E0A2B0DFB8700E15F05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E25E092B0DFB8700E15F05 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		637C94362B0F74B100416D2B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		63E25E022B0DFB8500E15F05 /* F1Fantasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F1Fantasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E25E052B0DFB8500E15F05 /* F1FantasyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1FantasyApp.swift; sourceTree = "<group>"; };
 		63E25E072B0DFB8500E15F05 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		63E25E042B0DFB8500E15F05 /* F1Fantasy */ = {
 			isa = PBXGroup;
 			children = (
+				637C94362B0F74B100416D2B /* WelcomeView.swift */,
 				63E25E052B0DFB8500E15F05 /* F1FantasyApp.swift */,
 				63E25E072B0DFB8500E15F05 /* ContentView.swift */,
 				63E25E092B0DFB8700E15F05 /* Assets.xcassets */,
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637C94372B0F74B100416D2B /* WelcomeView.swift in Sources */,
 				63E25E322B0DFD6200E15F05 /* LeaderboardView.swift in Sources */,
 				63E25E302B0DFD4100E15F05 /* PredictionView.swift in Sources */,
 				63E25E082B0DFB8500E15F05 /* ContentView.swift in Sources */,

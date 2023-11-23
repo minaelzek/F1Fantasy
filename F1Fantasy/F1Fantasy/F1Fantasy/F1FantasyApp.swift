@@ -11,7 +11,8 @@ import SwiftUI
 struct F1FantasyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomeView()
         }
     }
 }
+
