@@ -10,28 +10,34 @@ import SwiftUI
 
 struct WelcomeView: View {
     var body: some View {
-        ZStack {
-            Image("f1WelcomeBackground") // Use the image as the background
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .edgesIgnoringSafeArea(.all) // Ensure it covers the entire screen
+        NavigationView {
+            ZStack {
+                Image("f1WelcomeBackground")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.all)
 
-            VStack {
-                Text("Welcome to F1Fantasy")
-                    .font(.system(size: 40, weight: .bold, design: .default))
-                    .foregroundColor(.white)
-                    .shadow(color: .black, radius: 10, x: 0, y: 0)
-                    .opacity(0.8)
-                    .padding(.top, 50) // Adds padding at the top
-                Spacer() // Pushes everything below it down
-            }
+                VStack {
+                    Text("Welcome to F1Fantasy")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .padding(.top, 50)
+                    Spacer()
+                }
 
-            VStack {
-                Spacer() // Pushes everything below it to the bottom
-                CustomButton(text: "Create Account", backgroundColor: Color.blue)
-                CustomButton(text: "Sign in with Google", image: Image("google-logo"), backgroundColor: .blue)
-                CustomButton(text: "Sign in with Apple", image: Image("apple-logo"), backgroundColor: .blue)
-                Spacer(minLength: 30) // Adjusts the space at the bottom
+                VStack {
+                    Spacer()
+                    NavigationLink(destination: CreateAccountView()) {
+                        CustomButton(text: "Create Account", backgroundColor: Color.blue, action: {})
+                    }
+                    CustomButton(text: "Sign in with Google", backgroundColor: Color.blue, image: Image("google-logo"), action: {
+                        // Handle Google sign-in
+                    })
+                    CustomButton(text: "Sign in with Apple", backgroundColor: Color.blue, image: Image("apple-logo"), action: {
+                        // Handle Apple sign-in
+                    })
+                    .padding(.bottom, 50)
+                }
             }
         }
     }
@@ -41,21 +47,22 @@ struct WelcomeView: View {
 
 
 
+
+
+
 struct CustomButton: View {
     var text: String
-    var image: Image? = nil
     var backgroundColor: Color
-    @State private var isPressed = false
-
+    var image: Image? = nil
+    var action: () -> Void
+    
     var body: some View {
-        Button(action: {
-            // Handle button action
-        }) {
+        Button(action: action) {
             HStack {
                 if let image = image {
                     image
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
                         .frame(width: 24, height: 24)
                 }
                 Text(text)
@@ -66,13 +73,7 @@ struct CustomButton: View {
             .frame(maxWidth: .infinity)
             .background(backgroundColor)
             .cornerRadius(10)
-            .scaleEffect(isPressed ? 0.95 : 1.0)
-            .brightness(isPressed ? 0.05 : 0)
         }
-        .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in
-            withAnimation(.easeInOut(duration: 0.2)) {
-                isPressed = pressing
-            }
-        }, perform: {})
     }
 }
+
