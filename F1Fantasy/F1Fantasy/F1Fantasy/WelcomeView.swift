@@ -7,7 +7,15 @@
 
 import Foundation
 import SwiftUI
+import GoogleSignIn
 
+struct GoogleSignInButton: UIViewRepresentable {
+    func makeUIView(context: Context) -> GIDSignInButton {
+        return GIDSignInButton()
+    }
+
+    func updateUIView(_ uiView: GIDSignInButton, context: Context) {}
+}
 struct WelcomeView: View {
     var body: some View {
         NavigationView {
