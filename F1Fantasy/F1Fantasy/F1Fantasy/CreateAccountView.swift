@@ -60,11 +60,6 @@ struct CreateAccountView: View {
     }
 }
 
-struct SignInView: View {
-    var body: some View {
-        // Implement the sign-in view
-        Text("Sign In View")
-    }
-}
+
 
 

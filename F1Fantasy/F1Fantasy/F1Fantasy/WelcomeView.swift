@@ -35,8 +35,16 @@ struct WelcomeView: View {
                     Spacer()
 
                     NavigationLink(destination: CreateAccountView()) {
-                        CustomButton(text: "Create Account", backgroundColor: Color.blue, action: {})
-                    }
+                                           Text("Create Account")
+                                               .font(.headline)
+                                               .foregroundColor(.white)
+                                               .frame(maxWidth: .infinity)
+                                               .padding()
+                                               .background(Color.blue)
+                                               .cornerRadius(10)
+                                       }
+                                       .padding(.bottom)
+                    
 
                     CustomButton(text: "Sign in with Google", backgroundColor: Color.blue, image: Image("google-logo"), action: {
                         // Handle Google sign-in
