@@ -18,32 +18,41 @@ struct WelcomeView: View {
                     .edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    Text("Welcome to F1Fantasy")
+                    Text("F1Fantasy")
                         .font(.largeTitle)
                         .foregroundColor(.white)
                         .padding(.top, 50)
+
+                    Text("Your ultimate F1 fantasy experience")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.bottom, 50)
+
                     Spacer()
                 }
 
                 VStack {
                     Spacer()
+
                     NavigationLink(destination: CreateAccountView()) {
                         CustomButton(text: "Create Account", backgroundColor: Color.blue, action: {})
                     }
+
                     CustomButton(text: "Sign in with Google", backgroundColor: Color.blue, image: Image("google-logo"), action: {
                         // Handle Google sign-in
                     })
+
                     CustomButton(text: "Sign in with Apple", backgroundColor: Color.blue, image: Image("apple-logo"), action: {
                         // Handle Apple sign-in
                     })
+
                     .padding(.bottom, 50)
                 }
             }
         }
+        .navigationBarTitle("Welcome")
     }
 }
-
-
 
 
 
@@ -76,4 +85,3 @@ struct CustomButton: View {
         }
     }
 }
-

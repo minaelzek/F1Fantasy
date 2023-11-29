@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63601D802B1737E700E59DD4 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63601D7F2B1737E700E59DD4 /* SignInView.swift */; };
 		637C94372B0F74B100416D2B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C94362B0F74B100416D2B /* WelcomeView.swift */; };
 		637C943B2B0F8DAC00416D2B /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637C943A2B0F8DAC00416D2B /* CreateAccountView.swift */; };
 		63E25E062B0DFB8500E15F05 /* F1FantasyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E25E052B0DFB8500E15F05 /* F1FantasyApp.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63601D7F2B1737E700E59DD4 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		637C94362B0F74B100416D2B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		637C943A2B0F8DAC00416D2B /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		63E25E022B0DFB8500E15F05 /* F1Fantasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F1Fantasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,8 +110,9 @@
 				63E25E092B0DFB8700E15F05 /* Assets.xcassets */,
 				63E25E2F2B0DFD4100E15F05 /* PredictionView.swift */,
 				63E25E312B0DFD6200E15F05 /* LeaderboardView.swift */,
-				63E25E0B2B0DFB8700E15F05 /* Preview Content */,
+				63601D7F2B1737E700E59DD4 /* SignInView.swift */,
 				637C943A2B0F8DAC00416D2B /* CreateAccountView.swift */,
+				63E25E0B2B0DFB8700E15F05 /* Preview Content */,
 			);
 			path = F1Fantasy;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				637C943B2B0F8DAC00416D2B /* CreateAccountView.swift in Sources */,
+				63601D802B1737E700E59DD4 /* SignInView.swift in Sources */,
 				637C94372B0F74B100416D2B /* WelcomeView.swift in Sources */,
 				63E25E322B0DFD6200E15F05 /* LeaderboardView.swift in Sources */,
 				63E25E302B0DFD4100E15F05 /* PredictionView.swift in Sources */,
