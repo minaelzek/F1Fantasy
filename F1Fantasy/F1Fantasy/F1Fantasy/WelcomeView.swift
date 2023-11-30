@@ -1,22 +1,9 @@
-//
-//  WelcomeView.swift
-//  F1Fantasy
-//
-//  Created by Mina Elzik on 2023-11-23.
-//
-
-import Foundation
 import SwiftUI
-import GoogleSignIn
 
-struct GoogleSignInButton: UIViewRepresentable {
-    func makeUIView(context: Context) -> GIDSignInButton {
-        return GIDSignInButton()
-    }
 
-    func updateUIView(_ uiView: GIDSignInButton, context: Context) {}
-}
 struct WelcomeView: View {
+    @State private var user: User?
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -42,21 +29,29 @@ struct WelcomeView: View {
                 VStack {
                     Spacer()
 
-                    NavigationLink(destination: CreateAccountView()) {
-                                           Text("Create Account")
-                                               .font(.headline)
-                                               .foregroundColor(.white)
-                                               .frame(maxWidth: .infinity)
-                                               .padding()
-                                               .background(Color.blue)
-                                               .cornerRadius(10)
-                                       }
-                                       .padding(.bottom)
-                    
+                    if user == nil {
+                        NavigationLink(destination: CreateAccountView()) {
+                            Text("Create Account")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
+                        .padding(.bottom)
 
-                    CustomButton(text: "Sign in with Google", backgroundColor: Color.blue, image: Image("google-logo"), action: {
-                        // Handle Google sign-in
-                    })
+                        CustomButton(text: "Sign in with Google", backgroundColor: Color.blue, image: Image("google-logo"), action: {
+                            handleGoogleSignIn() // Trigger the Google sign-in process
+                        })
+                    } else {
+                        Text("Welcome, \(user?.displayName ?? "")")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
 
                     CustomButton(text: "Sign in with Apple", backgroundColor: Color.blue, image: Image("apple-logo"), action: {
                         // Handle Apple sign-in
@@ -68,55 +63,44 @@ struct WelcomeView: View {
         }
         .navigationBarTitle("Welcome")
     }
-}
 
+    private func handleGoogleSignIn() { // Implement Google Sign-in
+        // Configure Firebase with Google Sign-in
+        FirebaseApp.configure(name: "F1Fantasy", options: GoogleAppOptions.sharedInstance().options)
 
-
-
-
-
-struct CustomButton: View {
-    var text: String
-    var backgroundColor: Color
-    var image: Image? = nil
-    var action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack {
-                if let image = image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                }
-                Text(text)
-                    .font(.headline)
-                    .foregroundColor(.white)
-            }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(backgroundColor)
-            .cornerRadius(10)
-        }
+        let signInConfig = GIDConfiguration.init(clientID: YOUR_CLIENT_ID) // Replace YOUR_CLIENT_ID with your actual client ID
+        GIDSignIn.sharedInstance().signIn(with: signInConfig, delegate: self as! GIDSignInDelegate)
     }
 }
-import UIKit
-import FirebaseCore
 
+extension WelcomeView: GIDSignInDelegate { // Handle sign-in events
+    func sign(_ signIn: GIDSignIn!, didSignInWith user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Error signing in with Google: \(error.localizedDescription)")
+            return
+        }
 
+        // Get the Firebase credential from the Google sign-in user
+        let credential = GIDGoogleAuthProvider.credential(withIDToken: user.authentication.idToken, accessToken: user.authentication.accessToken)
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+        // Sign in with Firebase using the credential
+        Auth.auth().signIn(with: credential) { result, error in
+            if let error = error {
+                print("Error signing in with Firebase: \(error.localizedDescription)")
+                return
+            }
 
-  var window: UIWindow?
+            // Update the user state with the Firebase user
+            self.user = result?.user
+        }
+    }
 
-  func application(_ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions:
-                   [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    FirebaseApp.configure()
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!) { // Handle sign-out
+        // Sign out of Firebase
+        Auth.auth().signOut()
 
-
-    return true
-  }
+        // Update the user state
+        self.user = nil
+    }
 }
+
