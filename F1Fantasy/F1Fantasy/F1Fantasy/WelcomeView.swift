@@ -1,8 +1,9 @@
 import SwiftUI
 
-
 struct WelcomeView: View {
     @State private var user: User?
+    @State private var chatMessages: [ChatMessage] = [] // Chat messages state
+    @State private var isShareSheetPresented = false // State for share sheet
 
     var body: some View {
         NavigationView {
@@ -62,6 +63,9 @@ struct WelcomeView: View {
             }
         }
         .navigationBarTitle("Welcome")
+        .sheet(isPresented: $isShareSheetPresented) {
+            ActivityView(activityItems: ["Check out my F1 Fantasy predictions and leaderboard!"])
+        }
     }
 
     private func handleGoogleSignIn() { // Implement Google Sign-in
@@ -104,3 +108,19 @@ extension WelcomeView: GIDSignInDelegate { // Handle sign-in events
     }
 }
 
+struct ChatMessage: Identifiable {
+    let id = UUID()
+    let username: String
+    let message: String
+}
+
+struct ActivityView: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityView>) -> UIActivityViewController {
+        return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityView>) {}
+}
