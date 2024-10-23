@@ -1,3 +1,10 @@
+//
+//  PredictionView.swift
+//  F1Fantasy
+//
+//  Created by Mina Elzik on 2023-11-22.
+//
+
 import Foundation
 import SwiftUI
 
@@ -12,11 +19,6 @@ struct PredictionView: View {
     @State private var selectedP2: String = "Pick a driver"
     @State private var selectedP3: String = "Pick a driver"
     @State private var selectedFastestLap: String = "Pick a driver"
-    @State private var selectedSideBet1: String = "Pick a side bet"
-    @State private var selectedSideBet2: String = "Pick a side bet"
-    @State private var selectedSideBet3: String = "Pick a side bet"
-    
-    @State private var countdown: String = ""
 
     var body: some View {
         VStack {
@@ -43,31 +45,9 @@ struct PredictionView: View {
                         }
                     }
                 }
-                
-                Section(header: Text("Side Bets")) {
-                    Picker("Side Bet 1", selection: $selectedSideBet1) {
-                        Text("Podium Prediction").tag("Podium Prediction")
-                        Text("Top Rookie").tag("Top Rookie")
-                        Text("Over/Under Race Incidents").tag("Over/Under Race Incidents")
-                    }
-                    Picker("Side Bet 2", selection: $selectedSideBet2) {
-                        Text("Podium Prediction").tag("Podium Prediction")
-                        Text("Top Rookie").tag("Top Rookie")
-                        Text("Over/Under Race Incidents").tag("Over/Under Race Incidents")
-                    }
-                    Picker("Side Bet 3", selection: $selectedSideBet3) {
-                        Text("Podium Prediction").tag("Podium Prediction")
-                        Text("Top Rookie").tag("Top Rookie")
-                        Text("Over/Under Race Incidents").tag("Over/Under Race Incidents")
-                    }
-                }
             }
 
             Spacer()
-            
-            Text("Submission Deadline: \(countdown)")
-                .font(.headline)
-                .padding()
 
             Button("Submit Prediction") {
                 if validatePredictions() {
@@ -83,31 +63,11 @@ struct PredictionView: View {
             .cornerRadius(0)
         }
         .navigationBarTitle("Make a Prediction", displayMode: .inline)
-        .onAppear {
-            startCountdown()
-        }
     }
 
     func validatePredictions() -> Bool {
         let allPicks = [selectedP1, selectedP2, selectedP3, selectedFastestLap]
         return Set(allPicks).count == allPicks.count // Returns true if all picks are unique
-    }
-    
-    func startCountdown() {
-        let deadline = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            let now = Date()
-            let remaining = deadline.timeIntervalSince(now)
-            if remaining > 0 {
-                let hours = Int(remaining) / 3600
-                let minutes = Int(remaining) % 3600 / 60
-                let seconds = Int(remaining) % 60
-                countdown = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-            } else {
-                countdown = "00:00:00"
-            }
-        }
-        timer.fire()
     }
 }
 

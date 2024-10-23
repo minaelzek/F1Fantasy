@@ -1,5 +1,13 @@
+//
+//  AppDelegate.swift
+//  F1Fantasy
+//
+//  Created by Mina Elzik on 2023-11-30.
+//
+
 import Foundation
 import UIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -7,13 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
-        // Initialize services
-        let raceDataService = RaceDataService()
-        let leagueService = LeagueService()
-        let chatService = ChatService()
-        let userService = UserService()
-        
         return true
     }
 

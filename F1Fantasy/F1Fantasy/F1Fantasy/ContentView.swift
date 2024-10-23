@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  F1Fantasy
+//
+//  Created by Mina Elzik on 2023-11-22.
+//
+
 import SwiftUI
 
 struct ContentView: View {
@@ -20,38 +27,6 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-                NavigationLink(destination: RaceDataView()) {
-                    Text("Race Data")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                NavigationLink(destination: LeagueView()) {
-                    Text("Leagues")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                NavigationLink(destination: ChatView()) {
-                    Text("Chat")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                NavigationLink(destination: UserView()) {
-                    Text("User Profile")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
             }
             .padding()
             .navigationBarTitle("F1 Fantasy", displayMode: .inline)
@@ -64,3 +39,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
