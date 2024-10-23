@@ -1,8 +1,9 @@
 import SwiftUI
 
-
 struct WelcomeView: View {
     @State private var user: User?
+    @State private var comment: String = ""
+    @State private var comments: [String] = []
 
     var body: some View {
         NavigationView {
@@ -59,6 +60,36 @@ struct WelcomeView: View {
 
                     .padding(.bottom, 50)
                 }
+
+                VStack {
+                    Text("Comments")
+                        .font(.title)
+                        .padding()
+
+                    List(comments, id: \.self) { comment in
+                        Text(comment)
+                    }
+
+                    HStack {
+                        TextField("Add a comment", text: $comment)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+
+                        Button(action: {
+                            if !comment.isEmpty {
+                                comments.append(comment)
+                                comment = ""
+                            }
+                        }) {
+                            Text("Post")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .padding()
+                }
             }
         }
         .navigationBarTitle("Welcome")
@@ -103,4 +134,3 @@ extension WelcomeView: GIDSignInDelegate { // Handle sign-in events
         self.user = nil
     }
 }
-
